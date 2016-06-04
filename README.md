@@ -78,8 +78,6 @@ Tüm parametreler OR lanır
 
     DB::table("tablo_ismi")->orWhere(["adi" => "yusuf", "soyadi" => "comert"])->exec();	
 
-
-
 Örnek kullanım
 
     DB::table("tablo_ismi")->where("adi", "yusuf")->orWhere("soyadi", "comert")->andWhere("email", "yusufcmrt@gmail.com")->exec();
@@ -129,35 +127,31 @@ DatabaseResult Class
 
 Tüm sonuçlar DatabaseResult class'ı tipinde döner. Burdan sonrasında bu class'ın kullanımından bahsedicem.
 
+    $kullanici = DB::table("kullanicilar")->where(["email" => "yusufcmrt@gmail.com", "parola" => "123456"])->exec();
 
-
-    $kullanici = DB::table("kullanicilar")->where(["email" => "yusufcmrt@gmail.com", "parola" => "Asdf1234"])->exec();
-
-sonuç döndü mü dönmedi mi kontrolü
+Sonuç döndü mü dönmedi mi kontrolü
 
     $kullanici->isNull(); 
 
-kaç satır geldiğini int olarak return eder
+Kaç satır geldiğini int olarak return eder
 
     $kullanici->length();	
 
-var ise ilk satırı aktifleştirir ve true dönderir. satır yok ise false dönderir. birden fazla satır var ise ilk satıra atlar ve next() ile devam edebilir.
+Var ise ilk satırı aktifleştirir ve true dönderir. satır yok ise false dönderir. birden fazla satır var ise ilk satıra atlar ve next() ile devam edebilir.
 
     $kullanici->first();	
 
-aktif satırdaki adi column'undaki veriyi verir. $kullanici->comlumn_name; şeklinde kullanılır
+Aktif satırdaki adi column'undaki veriyi verir. $kullanici->comlumn_name; şeklinde kullanılır
 
     $kullanici->adi;	
 
-bir sonraki satır var ise aktifleştirir ve true sonucu dönderir. satır yok ise false dönderir.
+Bir sonraki satır var ise aktifleştirir ve true sonucu dönderir. satır yok ise false dönderir.
 
     $kullanici->next();	
 
-
-
 Örnek kullanım 
 
-    $kullanici = DB::table("kullanicilar")->where(["email" => "yusufcmrt@gmail.com", "parola" => "Asdf1234"])->exec();
+    $kullanici = DB::table("kullanicilar")->where(["email" => "yusufcmrt@gmail.com", "parola" => "123456"])->exec();
     
     if(!$kullanici->isNull()){
     
@@ -171,7 +165,7 @@ bir sonraki satır var ise aktifleştirir ve true sonucu dönderir. satır yok i
 
 Örnek kullanım 
 
-    $kullanici = DB::table("kullanicilar")->where(["email" => "yusufcmrt@gmail.com", "parola" => "Asdf1234"])->exec();
+    $kullanici = DB::table("kullanicilar")->where(["email" => "yusufcmrt@gmail.com", "parola" => "123456"])->exec();
     
     if($kullanici->first()){
     
@@ -183,7 +177,7 @@ bir sonraki satır var ise aktifleştirir ve true sonucu dönderir. satır yok i
 
 Örnek kullanım 
 
-    $kullanici = DB::table("kullanicilar")->where(["email" => "yusufcmrt@gmail.com", "parola" => "Asdf1234"])->exec();
+    $kullanici = DB::table("kullanicilar")->where(["email" => "yusufcmrt@gmail.com", "parola" => "123456"])->exec();
     
     while($kullanici->next()){
     
@@ -197,9 +191,11 @@ bir sonraki satır var ise aktifleştirir ve true sonucu dönderir. satır yok i
 
 Örnek kullanım 
 
-    $kullanici = DB::table("kullanicilar")->where(["email" => "yusufcmrt@gmail.com", "parola" => "Asdf1234"])->exec();
+    $kullanici = DB::table("kullanicilar")->where(["email" => "yusufcmrt@gmail.com", "parola" => "123456"])->exec();
     
-    while($kullanici->next()){	//tüm satırları tek tek okuyup sona kadar döner
+    //tüm satırları tek tek okuyup sona kadar döner
+    
+    while($kullanici->next()){	
     
     	echo $kullanici->email;
     
@@ -207,7 +203,7 @@ bir sonraki satır var ise aktifleştirir ve true sonucu dönderir. satır yok i
     
     }				
 
-tekrar ilk satıra döndü
+Tekrar ilk satıra döndü
 
     $kullanici->first();		
     
@@ -228,9 +224,11 @@ tekrar ilk satıra döndü
 
 Örnek kullanım 
 
-    $kullanici = DB::table("kullanicilar")->where(["email" => "yusufcmrt@gmail.com", "parola" => "Asdf1234"])->exec();
+    $kullanici = DB::table("kullanicilar")->where(["email" => "yusufcmrt@gmail.com", "parola" => "123456"])->exec();
     
-    while($kullanici->first()){	//sürekli 1. satırı çekeceği için sonsuz döngü
+    //sürekli 1. satırı çekeceği için sonsuz döngü
+    
+    while($kullanici->first()){	
     
     	echo $kullanici->email;
     
